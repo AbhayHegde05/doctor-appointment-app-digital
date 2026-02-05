@@ -22,9 +22,6 @@ const Navbar = () => {
         {/* Links (Hidden on Auth Pages) */}
         {!isAuthPage && (
           <div className="flex items-center gap-6">
-            <Link to="/login" className="text-sm font-bold text-slate-500 hover:text-emerald-600 transition-colors">
-              Patient Portal
-            </Link>
             <Link to="/login" className="btn-primary flex items-center gap-2 py-2.5">
               <LogIn size={18} /> Login
             </Link>

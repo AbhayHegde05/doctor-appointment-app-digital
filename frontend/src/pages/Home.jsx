@@ -25,12 +25,12 @@ const Home = () => {
                 Get Started <ArrowRight size={20} />
               </Link>
               <Link to="/login" className="px-8 py-4 bg-emerald-700 text-white border border-emerald-500 rounded-2xl font-bold text-lg hover:bg-emerald-800 transition-colors flex items-center justify-center">
-                Patient Login
+                Sign In
               </Link>
             </div>
           </div>
           
-          {/* Hero Visual/Illustration Placeholder */}
+          {/* Visual Placeholder */}
           <div className="hidden lg:flex justify-center relative">
             <div className="w-[500px] h-[500px] bg-emerald-500/20 rounded-full absolute blur-3xl animate-pulse"></div>
             <div className="relative bg-white/10 backdrop-blur-md p-8 rounded-[3rem] border border-white/20 shadow-2xl transform rotate-3 hover:rotate-0 transition-all duration-500">
@@ -44,19 +44,12 @@ const Home = () => {
               <div className="flex items-center gap-4 bg-white/20 p-4 rounded-2xl">
                  <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-emerald-600 shadow-sm"><Stethoscope size={24} /></div>
                  <div>
-                   <p className="font-bold text-white">Dr. Sarah Smith</p>
-                   <p className="text-xs text-emerald-100 font-medium">Top Rated Specialist</p>
+                   <p className="font-bold text-white">Find Specialists</p>
+                   <p className="text-xs text-emerald-100 font-medium">Top Rated Doctors</p>
                  </div>
               </div>
             </div>
           </div>
-        </div>
-
-        {/* Decorative Wave at bottom */}
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-            <path fill="#F8FAFC" fillOpacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-          </svg>
         </div>
       </section>
 
@@ -65,7 +58,7 @@ const Home = () => {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-black text-slate-800 mb-4">Why Choose HealthSync?</h2>
-            <p className="text-slate-400 max-w-2xl mx-auto">We combine advanced AI technology with trusted medical expertise to provide a seamless healthcare experience.</p>
+            <p className="text-slate-400 max-w-2xl mx-auto">We combine advanced AI technology with trusted medical expertise.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

@@ -1,29 +1,41 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Mail, Lock, ArrowRight, Activity } from 'lucide-react';
-import { api } from '../../services/api'; // Ensure this path matches your structure
+import { api } from '../../services/api';
+import { useAuth } from '../../context/AuthContext';
 
 const Login = () => {
   const navigate = useNavigate();
-  const [role, setRole] = useState('patient'); // 'patient' or 'doctor'
+  const { login } = useAuth(); // Updates the global app state
+  
+  const [role, setRole] = useState('patient'); // Visual toggle only
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setError('');
+
     try {
-      // In a real app: const user = await api.login({ ...formData, role });
-      // For Demo:
-      setTimeout(() => {
-        setLoading(false);
-        if(role === 'admin') navigate('/admin');
-        else if(role === 'doctor') navigate('/doctor-dashboard');
-        else navigate('/dashboard');
-      }, 1500);
-    } catch (error) {
+      // 1. Call the REAL Backend API
+      const response = await api.login(formData);
+      
+      // 2. If successful, store data in AuthContext
+      login(response);
+
+      // 3. Redirect based on the role coming from the DATABASE (not the UI toggle)
+      if (response.user.role === 'admin') navigate('/admin');
+      else if (response.user.role === 'doctor') navigate('/doctor-dashboard');
+      else navigate('/dashboard');
+
+    } catch (err) {
+      // 4. If backend fails (e.g., wrong password), show error
+      console.error("Login Failed:", err);
+      setError(err.message || 'Invalid email or password');
+    } finally {
       setLoading(false);
-      alert('Login Failed');
     }
   };
 
@@ -39,7 +51,7 @@ const Login = () => {
           <p className="text-slate-400 font-medium">Secure Access Portal</p>
         </div>
 
-        {/* Role Toggles */}
+        {/* Role Toggles (Visual only) */}
         <div className="flex bg-slate-100 p-1.5 rounded-xl mb-8">
           {['patient', 'doctor'].map((r) => (
             <button
@@ -81,6 +93,8 @@ const Login = () => {
               required
             />
           </div>
+
+          {error && <p className="text-rose-500 text-sm font-bold text-center bg-rose-50 p-3 rounded-lg">{error}</p>}
 
           <div className="flex justify-end">
             <Link to="#" className="text-xs font-bold text-emerald-600 hover:underline">Forgot Password?</Link>
